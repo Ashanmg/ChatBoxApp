@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ChatBoxApp-SPA"
+    }
+  },
+  "defaultProject": "ChatBoxApp-SPA",
+  "cli": {
+    "analytics": false
+  }
 }
