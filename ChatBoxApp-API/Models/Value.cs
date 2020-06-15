@@ -1,4 +1,4 @@
-namespace ChatBox_API.Models
+namespace ChatBoxApp_API.Models
 {
     public class Value
     {
