@@ -1,4 +1,4 @@
-import { ErrorInterceptor } from './_services/error.interceptor';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,7 +24,7 @@ import { RegisterComponent } from './register/register.component';
    ],
    providers: [
       AuthService,
-      ErrorInterceptor
+      ErrorInterceptorProvider
    ],
    bootstrap: [
       AppComponent
