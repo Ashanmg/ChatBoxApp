@@ -1,0 +1,17 @@
+<div class="card mb-4">
+  <div class="card-img-wrapper">
+    <img class="card-img-top" src="{{user.photoUrl}}" alt="{{user.knownAs}}">
+    <ul class="list-inline member-icon animate text-center">
+      <li class="list-inline-item"><button class="btn btn-dark"><em class="fa fa-user"></em></button></li>
+      <li class="list-inline-item"><button class="btn btn-dark"><em class="fa fa-heart"></em></button></li>
+      <li class="list-inline-item"><button class="btn btn-dark"><em class="fa fa-envelope"></em></button></li>
+    </ul>
+  </div>
+  <div class="card-body p-1">
+    <h6 class="card-title text-center mb-1">
+      <em class="fa fa-user"></em>
+      {{user.knownAs}}, {{user.age}} 
+    </h6>
+    <p class="card-text text-muted text-center">{{user.city}}</p>
+  </div>
+</div>
