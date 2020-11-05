@@ -2,7 +2,7 @@
   <div class="card-img-wrapper">
     <img class="card-img-top" src="{{user.photoUrl}}" alt="{{user.knownAs}}">
     <ul class="list-inline member-icon animate text-center">
-      <li class="list-inline-item"><button class="btn btn-dark"><em class="fa fa-user"></em></button></li>
+      <li class="list-inline-item"><button class="btn btn-dark" [routerLink]="['/members/', user.id]"><em class="fa fa-user"></em></button></li>
       <li class="list-inline-item"><button class="btn btn-dark"><em class="fa fa-heart"></em></button></li>
       <li class="list-inline-item"><button class="btn btn-dark"><em class="fa fa-envelope"></em></button></li>
     </ul>
