@@ -21,9 +21,11 @@ jobs:
         dotnet-version: '3.1.102'
 
     - name: Build with dotnet
+      working-directory: ./ChatBoxApp-API
       run: dotnet build --configuration Release
 
     - name: dotnet publish
+      working-directory: ./ChatBoxApp-API
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
     - name: Deploy to Azure Web App
