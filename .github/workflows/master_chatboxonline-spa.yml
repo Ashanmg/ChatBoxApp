@@ -35,4 +35,4 @@ jobs:
         app-name: 'chatboxonline-spa'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_76e52f7025dd424eb340a019e5cd8107 }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        package: .
