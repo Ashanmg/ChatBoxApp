@@ -18,13 +18,13 @@ jobs:
     - name: Set up Node.js version
       uses: actions/setup-node@v1
       with:
-        node-version: '12.13.0'
+        node-version: '12.16.1'
 
     - name: npm install, build, and test
+      working-directory: ./ChatBoxApp-SPA
       run: |
         npm install
-        npm run build --if-present
-        npm run test --if-present
+        npm run build --prod
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
@@ -32,4 +32,4 @@ jobs:
         app-name: 'chatboxonline'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_f1f263c3b78e4ee68b92b8467a289302 }}
-        package: .
+        package: ./ChatBoxApp-SPA/dist/ChatBoxApp-SPA
