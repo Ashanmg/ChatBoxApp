@@ -23,6 +23,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { environment } from 'src/environments/environment';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -52,8 +53,8 @@ export function tokenGetter() {
       JwtModule.forRoot({
          config: {
            tokenGetter: tokenGetter,
-           allowedDomains: ['localhost:5000'],
-           disallowedRoutes: ['localhost:5000/api/auth'],
+           allowedDomains: [environment.allowDomain],
+           disallowedRoutes: [environment.disallowDomain],
          }
        }),
    ],
