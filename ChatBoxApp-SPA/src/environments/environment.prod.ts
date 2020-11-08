@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'https://chatboxonline-api.azurewebsites.net/api/'
 };
