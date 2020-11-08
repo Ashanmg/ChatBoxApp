@@ -24,7 +24,7 @@ jobs:
       working-directory: ./ChatBoxApp-SPA
       run: |
         npm install
-        ng build --prod
+        npm run build:prod
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
