@@ -44,6 +44,7 @@ namespace ChatBox_API
                    Newtonsoft.Json.ReferenceLoopHandling.Ignore; 
                 });
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
