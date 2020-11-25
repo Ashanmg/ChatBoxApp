@@ -94,7 +94,6 @@ namespace ChatBox_API.Controllers
             }
 
             return BadRequest("Could not add the photo");
-
         }
     }
 }
