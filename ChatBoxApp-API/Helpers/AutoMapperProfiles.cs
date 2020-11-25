@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using AutoMapper;
+using ChatBox_API.Dtos;
 using ChatBoxApp_API.Dtos;
 using ChatBoxApp_API.Models;
 
@@ -22,6 +23,8 @@ namespace ChatBoxApp_API.Helpers
                     opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
             CreateMap<Photo, PhotoForDetailDto>();
             CreateMap<UserForUpdateDto, User>();
+            CreateMap<Photo, PhotoForReturnDto>();
+            CreateMap<PhotoForCreationDto, Photo>();
         }
     }
 }
