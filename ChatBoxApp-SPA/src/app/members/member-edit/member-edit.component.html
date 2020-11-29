@@ -39,7 +39,7 @@
         <div class="col-sm-8">
             <div class="tab-panel">
                 <tabset>
-                    <tab heading="Edit Profile">
+                    <tab heading="Edit Profile" class="mt-2">
                         <form #editForm="ngForm" id="editform" (ngSubmit)="updateUser()">
                             <h4>Description</h4>
                             <textarea name="introduction" rows="6" class="form-control"
@@ -59,8 +59,8 @@
                             </div>
                         </form>
                     </tab>
-                    <tab heading="Edit Photos">
-                        <p>Photo edit will go here</p>
+                    <tab heading="Edit Photos" class="mt-2">
+                        <app-photo-editor [photos]="user.photos"></app-photo-editor>
                     </tab>
                 </tabset>
             </div>
