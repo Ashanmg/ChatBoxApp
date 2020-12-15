@@ -12,11 +12,10 @@ import { environment } from 'src/environments/environment';
 export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
   uploader:FileUploader;
-  hasBaseDropZoneOver:boolean;
+  hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
 
   constructor(private authService: AuthService) {
-    this.hasBaseDropZoneOver = false;
   }
 
   ngOnInit(): void {
@@ -37,6 +36,24 @@ export class PhotoEditorComponent implements OnInit {
       autoUpload: false,
       maxFileSize: 2 * 1024 * 1024
     });
+
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false};
+
+    this.uploader.onSuccessItem = (item, response, status, headers) => {
+      if (response) {
+        const res: Photo = JSON.parse(response);
+        const photo = {
+          id: res.id,
+          url: res.url,
+          dateAdded: res.dateAdded,
+          description: res.description,
+          isMain: res.isMain
+        }
+
+        this.photos.push(photo);
+      }
+    }
+
   }
 
 }
