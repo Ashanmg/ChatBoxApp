@@ -82,15 +82,17 @@ namespace ChatBox_API.Controllers
 
             var photo = _mapper.Map<Photo>(photoForCreationDto);
 
-            if (userFromRepo.Photos.Any(p => p.IsMain))
+            if (!userFromRepo.Photos.Any(p => p.IsMain))
             {
                 photo.IsMain = true;
             }
 
+            userFromRepo.Photos.Add(photo);
+
             if (await _datingRepository.SaveAll())
             {
                 var photoReturn = _mapper.Map<PhotoForReturnDto>(photo);
-                return CreatedAtRoute("GetPhoto", new {id = photo.Id}, photoReturn);
+                return CreatedAtRoute("GetPhoto", new {userId = userId, id = photo.Id}, photoReturn);
             }
 
             return BadRequest("Could not add the photo");
