@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { Photo } from 'src/app/_models/photo';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { UserService } from 'src/app/_services/user.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -14,8 +16,9 @@ export class PhotoEditorComponent implements OnInit {
   uploader:FileUploader;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
+  currentMain: Photo;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private userService: UserService, private alertifyService: AlertifyService) {
   }
 
   ngOnInit(): void {
@@ -53,7 +56,19 @@ export class PhotoEditorComponent implements OnInit {
         this.photos.push(photo);
       }
     }
+  }
 
+  setMainPhoto(photo: Photo) {
+    this.userService.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe(
+      () => {
+        this.currentMain = this.photos.filter(p => p.isMain === true)[0];
+        this.currentMain.isMain = false;
+        photo.isMain = true;
+        this.alertifyService.success("Main photo is updated successfully");
+      }, error => {
+        this.alertifyService.error(error);
+      }
+    )
   }
 
 }
