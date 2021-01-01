@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using ChatBoxApp_API.Data;
 using ChatBoxApp_API.Dtos;
 using ChatBoxApp_API.Models;
@@ -18,10 +19,12 @@ namespace ChatBoxApp_API.Controllers
     {
         private readonly IAuthRepository _authRepository;
         private readonly IConfiguration _config;
+        private readonly IMapper _mapper;
 
-        public AuthController(IAuthRepository authRepository, IConfiguration config)
+        public AuthController(IAuthRepository authRepository, IConfiguration config, IMapper mapper)
         {
             this._config = config;
+            this._mapper = mapper;
             this._authRepository = authRepository;
         }
 
@@ -77,7 +80,13 @@ namespace ChatBoxApp_API.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return Ok(new { token = tokenHandler.WriteToken(token)});
+            var userData = _mapper.Map<UserForListDto>(userFromRepo);
+
+            return Ok(new 
+            { 
+                token = tokenHandler.WriteToken(token),
+                userData
+            });
         }
     }
 }
